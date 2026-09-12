@@ -369,3 +369,20 @@ body {
     backdrop-filter: blur(8px);
     cursor: pointer;
 }
+    @media (max-width: 600px) {
+
+    body {
+        margin: 0;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .phone {
+        width: 100vw;
+        height: 100vh;
+        border: none;
+        border-radius: 0;
+    }
+
+}
