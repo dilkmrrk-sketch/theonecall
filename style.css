@@ -369,20 +369,21 @@ body {
     backdrop-filter: blur(8px);
     cursor: pointer;
 }
-    @media (max-width: 600px) {
+@media (max-width: 600px) {
 
     body {
         margin: 0;
         width: 100vw;
         height: 100vh;
         overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .phone {
-        width: 100vw;
-        height: 100vh;
-        border: none;
-        border-radius: 0;
+        width: min(350px, 94vw);
+        height: min(700px, 94vh);
     }
 
 }
