@@ -1,0 +1,371 @@
+.phone {
+    width: 350px;
+    height: 700px;
+    border: 4px solid black;
+    border-radius: 30px;
+    position: relative;
+    overflow: hidden;
+    background: url(pexels-stephane-navailles-1835566-3415410.jpg);
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 5px 15px;
+    30px rgba(0,0,0,0,0.25);
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.lock-screen {
+    height: 100%;
+    position: relative;
+}
+.status-bar {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    right: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+.battery {
+    width: 20px;
+    height: 9px;
+    border: 2px solid white;
+    border-radius: 3px;
+}
+.battery::after {
+   content: "";
+   position: absolute;
+   width: 2px;
+   height: 5px;
+   background: white;
+   margin-left: 22px;
+   margin-top: 2px;
+}
+.battery::before {
+   content: "";
+   position: absolute;
+   width: 15px;
+   height: 10px;
+   background: white;
+   margin-left: 0px;
+   margin-top: 0px;
+   border-radius: 1px;
+}
+.unlock {
+    position: absolute;
+    bottom: 27px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 220px;
+    height: 45px;
+    border: 1px solid white;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    touch-action: none;
+}
+.lock-screen h1 {
+    text-align: center;
+    font-size: 28px;
+    transform: translateY(25px);
+    color: white;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, sans-serif;
+}
+.lock-screen p {
+    text-align: center;
+    color: white;
+    margin-top: 25px;
+}
+@keyframes move {
+    from {
+      left: 0;
+    }
+    to {
+     left: 50px;
+    }
+}
+.unlock span {
+    position: relative;
+    animation: move 2s infinite;
+}
+.notch {
+    width: 120px;
+    height: 25px;
+    background: black;
+    border-radius: 0 0 15px 15px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.notch {
+    z-index: 10;
+}
+.camera {
+    width: 9px;
+    height: 9px;
+    background: #050505;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 2px #777;
+}
+.lock-screen h1, .lock-screen p {
+    color: white;
+}
+.lock-screen small {
+    display: block;
+    text-align: center;
+    color: white;
+}
+.camera span {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: #aaa;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+}
+.signal {
+    display: flex;
+    align-items: flex-end;
+    gap: 2px;
+}
+.signal i {
+    display: block;
+    width: 3px;
+    background: white;
+}
+
+.signal i:nth-child(1) {
+    height: 3px;
+}
+
+.signal i:nth-child(2) {
+    height: 5px;
+}
+
+.signal i:nth-child(3) {
+    height: 7px;
+}
+
+.signal i:nth-child(4) {
+    height: 9px;
+}
+.right-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.network {
+    color: white;
+}
+#time {
+    position: absolute;
+    top: 57%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 40px;
+}
+.date {
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 14px;
+    white-space: nowrap;
+}
+.callscreen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    inset: 0;
+    background-image: url("pexels-eliazanrosso-35011986.jpg");
+    background-size: cover;
+    background-position: center;
+    display: none;
+}
+.swipe-control {
+    position: absolute;
+    top: 75%;
+    left: 0;
+    width: 100%;
+    transform: translateY(-50%);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    color: white;
+}
+
+.swipe-button {
+    width: 50px;
+    height: 30px;
+    border-radius: 18px;
+
+    background: rgba(255, 255, 255, 0.08);
+    border: 2px solid white;
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.4),
+        inset 0 0 10px rgba(255, 255, 255, 0.6);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    touch-action: none;
+
+    animation: swipeHint 1.8s ease-in-out infinite;
+}
+
+@keyframes swipeHint {
+    0% {
+        transform: translateX(-12px);
+    }
+
+    50% {
+        transform: translateX(12px);
+    }
+
+    100% {
+        transform: translateX(-12px);
+    }
+}
+.international-label,
+.srilankan-label {
+    width: 100px;
+    text-align: center;
+    font-size: 12px;
+}
+.international-label,
+.srilankan-label {
+    width: auto;
+    padding: 8px 14px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(8px);
+    color: white;
+    font-size: 13px;
+    font-weight: 500;
+    white-space: nowrap;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
+}
+.intpg,
+.slpg {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    box-sizing: border-box;
+    padding: 25px 18px;
+    color: white;
+}
+.intpg {
+    display: none;
+    z-index: 20;
+    background: black;
+}
+
+.slpg {
+    display: none;
+    z-index: 20;
+    background: black;
+}
+.intpg input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+
+    background: rgba(255, 255, 255, 0.12);
+    color: white;
+
+    outline: none;
+    backdrop-filter: blur(8px);
+}
+
+.intpg input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+.intpg h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.intpg h3 {
+    margin-top: 25px;
+    margin-bottom: 10px;
+    font-size: 17px;
+}
+
+.intpg p {
+    margin: 8px 0;
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    line-height: 1.5;
+}
+.slpg h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.slpg h3 {
+    margin-top: 25px;
+    margin-bottom: 10px;
+    font-size: 17px;
+}
+
+.slpg p {
+    margin: 8px 0;
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    line-height: 1.5;
+}
+
+.slpg input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.12);
+    color: white;
+    outline: none;
+    backdrop-filter: blur(8px);
+}
+
+.slpg input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+.back-button {
+    padding: 8px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.12);
+    color: white;
+    backdrop-filter: blur(8px);
+    cursor: pointer;
+}

@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TheOneCall</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="phone">
+
+    <div class="notch">
+        <div class="camera">
+            <span></span>
+        </div>
+    </div>
+
+
+    <!-- LOCK SCREEN -->
+
+    <div class="lock-screen">
+
+        <div class="status-bar">
+
+            <span class="signal">
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+            </span>
+
+            <span class="right-status">
+                <span class="battery"></span>
+                <span class="network">5G</span>
+            </span>
+
+        </div>
+
+        <h2 id="time">HELLO</h2>
+
+        <div class="date"></div>
+
+        <h1>TheOneCall</h1>
+
+        <p>Pick up. Stay Informed. Grow Higher.</p>
+
+        <small>Current Affairs</small>
+
+        <div class="unlock">
+            <span>Slide to unlock</span>
+        </div>
+
+    </div>
+
+
+    <!-- CALL SCREEN -->
+
+    <div class="callscreen">
+
+        <div class="swipe-control">
+
+            <span class="international-label">
+                International Affairs
+            </span>
+
+            <div class="swipe-button"></div>
+
+            <span class="srilankan-label">
+                Sri Lankan Affairs
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- INTERNATIONAL AFFAIRS -->
+
+    <div class="intpg">
+
+        <button class="back-button">← Back</button>
+
+        <h2>International Affairs</h2>
+
+        <input type="text" placeholder="Search month...">
+
+        <div class="month-section">
+
+            <h3>September 2026</h3>
+
+            <p>1. Global economic meeting held.</p>
+            <p>2. New international agreement announced.</p>
+            <p>3. Major technology summit begins.</p>
+
+        </div>
+
+        <div class="month-section">
+
+            <h3>August 2026</h3>
+
+            <p>1. International climate conference held.</p>
+            <p>2. New trade agreement discussed.</p>
+            <p>3. Global education initiative launched.</p>
+
+        </div>
+
+    </div>
+
+
+    <!-- SRI LANKAN AFFAIRS -->
+
+    <div class="slpg">
+
+        <button class="back-button">← Back</button>
+
+        <h2>Sri Lankan Affairs</h2>
+
+        <input type="text" placeholder="Search month...">
+
+        <div class="month-section">
+
+            <h3>September 2026</h3>
+
+            <p>1. New Sri Lankan development announced.</p>
+            <p>2. National economic meeting held.</p>
+            <p>3. New public initiative launched.</p>
+
+        </div>
+
+        <div class="month-section">
+
+            <h3>August 2026</h3>
+
+            <p>1. New policy discussion held.</p>
+            <p>2. National event announced.</p>
+            <p>3. Government program introduced.</p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+// ====================
+// TIME & DATE
+// ====================
+
+const now = new Date();
+
+document.querySelector("#time").textContent =
+    now.toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit"
+    });
+
+document.querySelector(".date").textContent =
+    now.toLocaleDateString([], {
+        weekday: "long",
+        month: "long",
+        day: "numeric"
+    });
+
+
+// ====================
+// ELEMENTS
+// ====================
+
+const unlock =
+    document.querySelector(".unlock");
+
+const lockScreen =
+    document.querySelector(".lock-screen");
+
+const callScreen =
+    document.querySelector(".callscreen");
+
+const intPage =
+    document.querySelector(".intpg");
+
+const slPage =
+    document.querySelector(".slpg");
+
+
+// ====================
+// SHOW PAGE
+// ====================
+
+function showPage(page) {
+
+    lockScreen.style.display = "none";
+    callScreen.style.display = "none";
+    intPage.style.display = "none";
+    slPage.style.display = "none";
+
+
+    if (page === "lock") {
+
+        lockScreen.style.display = "block";
+
+    }
+
+    else if (page === "callscreen") {
+
+        callScreen.style.display = "block";
+
+    }
+
+    else if (page === "international") {
+
+        intPage.style.display = "block";
+
+    }
+
+    else if (page === "srilankan") {
+
+        slPage.style.display = "block";
+
+    }
+
+}
+
+
+// ====================
+// SAVE PAGE
+// ====================
+
+function savePage(page) {
+
+    sessionStorage.setItem(
+        "theOneCallPage",
+        page
+    );
+
+}
+
+
+// ====================
+// OPEN PAGE
+// ====================
+
+function goToPage(page) {
+
+    history.pushState(
+        { page: page },
+        "",
+        location.href
+    );
+
+    savePage(page);
+
+    showPage(page);
+
+}
+
+
+// ====================
+// RESTORE AFTER REFRESH
+// ====================
+
+let savedPage =
+    sessionStorage.getItem("theOneCallPage");
+
+
+// If there is no saved page,
+// start from LOCK SCREEN.
+
+if (
+    savedPage !== "callscreen" &&
+    savedPage !== "international" &&
+    savedPage !== "srilankan"
+) {
+
+    savedPage = "lock";
+
+}
+
+
+// ====================
+// REBUILD HISTORY
+// ====================
+
+// Current page becomes the starting
+// lock-screen history entry.
+
+history.replaceState(
+    { page: "lock" },
+    "",
+    location.href
+);
+
+
+// Rebuild history depending
+// on the saved page.
+
+if (savedPage === "callscreen") {
+
+    history.pushState(
+        { page: "callscreen" },
+        "",
+        location.href
+    );
+
+}
+
+
+else if (savedPage === "international") {
+
+    history.pushState(
+        { page: "callscreen" },
+        "",
+        location.href
+    );
+
+    history.pushState(
+        { page: "international" },
+        "",
+        location.href
+    );
+
+}
+
+
+else if (savedPage === "srilankan") {
+
+    history.pushState(
+        { page: "callscreen" },
+        "",
+        location.href
+    );
+
+    history.pushState(
+        { page: "srilankan" },
+        "",
+        location.href
+    );
+
+}
+
+
+// Show the saved page.
+
+showPage(savedPage);
+
+
+// ====================
+// UNLOCK
+// ====================
+
+let startX = 0;
+let dragging = false;
+
+
+unlock.addEventListener(
+    "pointerdown",
+    function(event) {
+
+        startX = event.clientX;
+
+        dragging = true;
+
+        unlock.setPointerCapture(
+            event.pointerId
+        );
+
+        unlock.style.transition =
+            "none";
+
+    }
+);
+
+
+unlock.addEventListener(
+    "pointermove",
+    function(event) {
+
+        if (!dragging) return;
+
+        let moveX =
+            event.clientX - startX;
+
+
+        if (
+            moveX > 0 &&
+            moveX < 100
+        ) {
+
+            unlock.style.transform =
+                `translateX(calc(-50% + ${moveX}px))`;
+
+        }
+
+    }
+);
+
+
+unlock.addEventListener(
+    "pointerup",
+    function(event) {
+
+        if (!dragging) return;
+
+        let moveX =
+            event.clientX - startX;
+
+        dragging = false;
+
+
+        if (moveX >= 70) {
+
+            goToPage("callscreen");
+
+        }
+
+
+        unlock.style.transition =
+            "transform 0.4s ease";
+
+        unlock.style.transform =
+            "translateX(-50%)";
+
+    }
+);
+
+
+unlock.addEventListener(
+    "pointercancel",
+    function() {
+
+        dragging = false;
+
+        unlock.style.transition =
+            "transform 0.4s ease";
+
+        unlock.style.transform =
+            "translateX(-50%)";
+
+    }
+);
+
+
+// ====================
+// AFFAIRS SWIPE
+// ====================
+
+const swipeButton =
+    document.querySelector(".swipe-button");
+
+let swipeStartX = 0;
+let swiping = false;
+
+
+swipeButton.addEventListener(
+    "pointerdown",
+    function(event) {
+
+        swipeStartX = event.clientX;
+
+        swiping = true;
+
+        swipeButton.setPointerCapture(
+            event.pointerId
+        );
+
+        swipeButton.style.animation =
+            "none";
+
+        swipeButton.style.transition =
+            "none";
+
+    }
+);
+
+
+swipeButton.addEventListener(
+    "pointermove",
+    function(event) {
+
+        if (!swiping) return;
+
+        const moveX =
+            event.clientX - swipeStartX;
+
+        swipeButton.style.transform =
+            `translateX(${moveX}px)`;
+
+    }
+);
+
+
+swipeButton.addEventListener(
+    "pointerup",
+    function(event) {
+
+        if (!swiping) return;
+
+        const moveX =
+            event.clientX - swipeStartX;
+
+        swiping = false;
+
+
+        if (moveX < -90) {
+
+            goToPage("international");
+
+        }
+
+
+        else if (moveX > 90) {
+
+            goToPage("srilankan");
+
+        }
+
+
+        swipeButton.style.transition =
+            "transform 0.3s ease";
+
+        swipeButton.style.transform =
+            "translateX(0)";
+
+
+        setTimeout(function() {
+
+            swipeButton.style.transition =
+                "";
+
+            swipeButton.style.animation =
+                "swipeHint 1.8s ease-in-out infinite";
+
+        }, 300);
+
+    }
+);
+
+
+swipeButton.addEventListener(
+    "pointercancel",
+    function() {
+
+        swiping = false;
+
+        swipeButton.style.transition =
+            "transform 0.3s ease";
+
+        swipeButton.style.transform =
+            "translateX(0)";
+
+
+        setTimeout(function() {
+
+            swipeButton.style.transition =
+                "";
+
+            swipeButton.style.animation =
+                "swipeHint 1.8s ease-in-out infinite";
+
+        }, 300);
+
+    }
+);
+
+
+// ====================
+// INTERNATIONAL SEARCH
+// ====================
+
+const monthSearch =
+    document.querySelector(".intpg input");
+
+const monthSections =
+    document.querySelectorAll(
+        ".intpg .month-section"
+    );
+
+
+monthSearch.addEventListener(
+    "input",
+    function() {
+
+        const searchText =
+            monthSearch.value.toLowerCase();
+
+
+        monthSections.forEach(
+            function(section) {
+
+                const monthName =
+                    section
+                    .querySelector("h3")
+                    .textContent
+                    .toLowerCase();
+
+
+                if (
+                    monthName.includes(searchText)
+                ) {
+
+                    section.style.display =
+                        "block";
+
+                }
+
+                else {
+
+                    section.style.display =
+                        "none";
+
+                }
+
+            }
+        );
+
+    }
+);
+
+
+// ====================
+// SRI LANKAN SEARCH
+// ====================
+
+const slMonthSearch =
+    document.querySelector(".slpg input");
+
+const slMonthSections =
+    document.querySelectorAll(
+        ".slpg .month-section"
+    );
+
+
+slMonthSearch.addEventListener(
+    "input",
+    function() {
+
+        const searchText =
+            slMonthSearch.value.toLowerCase();
+
+
+        slMonthSections.forEach(
+            function(section) {
+
+                const monthName =
+                    section
+                    .querySelector("h3")
+                    .textContent
+                    .toLowerCase();
+
+
+                if (
+                    monthName.includes(searchText)
+                ) {
+
+                    section.style.display =
+                        "block";
+
+                }
+
+                else {
+
+                    section.style.display =
+                        "none";
+
+                }
+
+            }
+        );
+
+    }
+);
+
+
+// ====================
+// BACK BUTTON
+// ====================
+
+const backButtons =
+    document.querySelectorAll(".back-button");
+
+
+backButtons.forEach(
+    function(button) {
+
+        button.onclick = function() {
+
+            history.back();
+
+        };
+
+    }
+);
+
+
+// ====================
+// BROWSER BACK / FORWARD
+// ====================
+
+window.addEventListener(
+    "popstate",
+    function(event) {
+
+        if (
+            event.state &&
+            event.state.page
+        ) {
+
+            const page =
+                event.state.page;
+
+            savePage(page);
+
+            showPage(page);
+
+        }
+
+        else {
+
+            savePage("lock");
+
+            showPage("lock");
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
