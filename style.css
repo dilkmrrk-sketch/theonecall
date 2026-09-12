@@ -371,19 +371,39 @@ body {
 }
 @media (max-width: 600px) {
 
+    html,
     body {
+        width: 100%;
+        height: 100%;
         margin: 0;
-        width: 100vw;
-        height: 100vh;
         overflow: hidden;
+    }
+
+    body {
         display: flex;
         justify-content: center;
         align-items: center;
     }
 
     .phone {
-        width: min(350px, 94vw);
-        height: min(700px, 94vh);
+        width: 94vw;
+        height: 94dvh;
+        max-width: 350px;
+        max-height: 700px;
+        box-sizing: border-box;
     }
 
+    #time {
+        font-size: 32px;
+        top: 54%;
+    }
+
+    .date {
+        top: 61%;
+        font-size: 13px;
+    }
+
+    .unlock {
+        bottom: 30px;
+    }
 }
